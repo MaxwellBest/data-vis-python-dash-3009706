@@ -1,0 +1,49 @@
+import plotly.io as pio
+print(pio.templates)
+
+在练习文件中，如果您查看 Branch： 03_01B，您将看到我们有一个名为 templates.py 的文件。 这只是向您显示所有可用的模板。 如果你运行它，你会看到我们在终端上有ggplot2，seaborn，simple_white等等。 因此，这些是一些潜在的样式，您可以应用它们而无需过多的细节。
+
+
+使用style css，簡單的引入很方便，但是大型系統則太亂。
+
+This is a valid style argument for a Dash HTML component? style="background-color": "black"?
+Style arguments must be given as a dictionary and camel-case must be used for the rules. The correct version would be: style={"backgroundColor": "black"}
+
+引用external css
+早午餐 O3，O3b。 如果你看一下文件夹结构，你会看到我们现在有一个用于 O3，O3 的文件夹，我们有一个文件代码和破折号下划线星表点 PY，我们有我们的数据文件，我们有一个名为 Assets 的新文件夹，其中包含一个结构核心和一个样式表。 我们现在将研究如何在您的破折号应用程序中包含CSS样式表。 默认情况下，dash 我们将在项目的根目录中查找诸如收纳表、JS 文件和结构核心之类的资产以及一个名为 Assets 的文件。 如果遵循此结构，则无需代码即可自动检测应用程序资产。 这确实非常方便。
+
+ 当然，您可以随意设置应用程序的样式，但现在我建议保持相同的底层结构，即使您想为 CSS 规则使用不同的值。 这种自动包含资产的功能非常强大，正是这种事情使使用dash工作变得快乐。
+ 
+ 
+[make interactive]
+call back:
+
+from dash import dcc => import dash_core_components as dcc
+from dash import html => import dash_html_components as html
+
+让我们分解一下它是如何工作的。 因此，在第 21 行和第 22 行，您可以看到应用程序接口的输入和输出元素在第 20 行作为 @app.callback 装饰器的参数给出。 在此示例中，输入是具有 ID 的组件的值属性，我的输入，您可以在此处看到在线查找 12，输出是具有 ID 和我的输出的组件的子属性。 这是在线定义的 15，每当输入属性发生变化时，回调函数就会被自动调用。 Dash pass 是回调函数输入的新值，并使用函数返回的任何内容更新输出组件的属性。 所以看到这里，我们返回在线 25 输出，然后替换输入值的任何值。 在第 21 行和第 22 行中，组件 ID 和组件属性关键字 compoent_id和compoent_property 是可选的。 此处包含它们是为了帮助您了解回调的工作原理，但它们经常被省略。
+
+drop-down menu:
+
+dcc.Dropdown(
+)
+
+
+add call back to drop-down menu:
+
+@app.callback(
+	Output("price-chart","figure")
+	Input("metal-filter","value")
+)
+def update_chart(metal):
+
+Using date range selectors:
+
+dcc.DatePickerRange(
+	id="date-range",
+	min_date_allowed=date.DateTime.min().date(),
+	max_date_allowed=date.DateTime.max().date(),
+	start_date=date.Datetime.min().date(),
+	end_date=date.Datetime.max().date()
+)
+	
